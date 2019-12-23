@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-navbar>
+    <ion-row>
+      <ion-col col-10>
+        <ion-title>
+          Home
+        </ion-title>
+      </ion-col>
+      <ion-col col-2 (click)="openCartPage()">
+        <ion-icon name="cart">{{ cart.length }}</ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <ion-row *ngIf="global.loginData.role == 'Admin'">
+    <ion-col col-6 (click)="openOrders()">
+      <button ion-button block color="golden">Received Order</button>
+    </ion-col>
+    <ion-col col-6 (click)="addProduct()">
+      <button ion-button block color="golden">Add new products</button>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-item col-10>
+      <ion-label floating>Search</ion-label>
+      <ion-input type="text" [(ngModel)]="searchText"></ion-input>
+    </ion-item>
+    <ion-item col-2>
+      <ion-icon name="search" item-end (click)="search()"></ion-icon>
+    </ion-item>
+  </ion-row>
+  <ion-card *ngFor="let i of products">
+    <img src="{{ imageUrl(i.poster) }}" style="width: 325px; height: 232px" />
+    <ion-card-content>
+      <ion-card-title>
+        ${{ i.price }} {{ i.name }}
+      </ion-card-title>
+      <button (click)="addToCart(i)" *ngIf="addToCartCheck(i.id)" ion-button color="golden" block>Add To Cart &nbsp; <ion-icon name="cart"></ion-icon></button>
+      <button (click)="removeFromCart(i)" *ngIf="!addToCartCheck(i.id)" ion-button block>Remove from cart &nbsp; <ion-icon name="cart"></ion-icon></button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

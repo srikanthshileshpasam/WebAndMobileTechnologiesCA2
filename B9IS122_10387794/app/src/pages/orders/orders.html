@@ -1,0 +1,39 @@
+<!--
+  Generated template for the OrdersPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>Orders</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card *ngFor="let i of orders" style="border: solid purple">
+
+    <ion-card-header>
+      Name:  {{ i.order._user.name }}
+    </ion-card-header>
+
+    <ion-card-content>
+      <p>User Location: {{ i.order._user.location }}</p>
+      <p>Price: {{ i.order.total }}</p>
+      <p *ngIf="i.order._status == 1">Status: Delivered</p>
+      <p *ngIf="i.order._status == 0">Status: Not Delivered</p>
+      <ion-card *ngFor="let p of i.products">
+        <ion-card-header>
+          Products name: {{ p._product.name }}
+        </ion-card-header>
+
+        <ion-card-content>
+          Products price: {{ p._product.price }}
+        </ion-card-content>
+      </ion-card>
+      <button block ion-button color="golden" *ngIf="i.order._status == 0" (click)="mark(i.order.id,1)">Mark as delivered</button>
+      <button block ion-button color="danger" *ngIf="i.order._status == 1" (click)="mark(i.order.id,0)">Mark as undelivered</button>
+    </ion-card-content>
+
+  </ion-card>
+</ion-content>

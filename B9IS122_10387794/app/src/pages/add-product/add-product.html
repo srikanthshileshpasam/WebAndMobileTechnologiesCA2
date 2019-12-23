@@ -1,0 +1,30 @@
+<!--
+  Generated template for the AddProductPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>Add new Product</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-label floating>Name</ion-label>
+      <ion-input type="text" [(ngModel)]="productData.name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Price</ion-label>
+      <ion-input type="number" [(ngModel)]="productData.price"></ion-input>
+    </ion-item>
+    <ion-item (click)="capturePhoto()">
+      <ion-icon name="camera">Add poster</ion-icon>
+    </ion-item>
+  <div padding>
+    <button block ion-button (click)="addProduct()">Add New Product</button>
+  </div>
+  </ion-list>
+</ion-content>
